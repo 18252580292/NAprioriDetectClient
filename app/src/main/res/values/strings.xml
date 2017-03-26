@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">NAprioriDetectClient</string>
     <string name="napriori">欢迎使用NApriori检测方案</string>
+    <string-array name="app_func_items">
+        <item>首页</item>
+        <item>本地检测</item>
+        <item>联网检测</item>
+        <item>个人中心</item>
+    </string-array>
 </resources>
