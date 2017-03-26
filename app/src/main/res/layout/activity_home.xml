@@ -7,4 +7,12 @@
     android:orientation="vertical"
     tools:context="jskj.com.naprioridetectclient.ui.HomeActivity">
 
+    <TextView
+        android:id="@+id/txt_title_home"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="首页"
+        android:textSize="20sp" />
 </LinearLayout>
