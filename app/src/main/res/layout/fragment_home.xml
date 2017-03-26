@@ -9,6 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="200dp" />
 
+    <TextView
+        android:background="@android:color/darker_gray"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:text="@string/mobile_virus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textColor="#000"
+        android:textSize="20sp" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_home_fragment"
         android:layout_width="match_parent"

@@ -1,10 +1,26 @@
 <resources>
     <string name="app_name">NAprioriDetectClient</string>
     <string name="napriori">欢迎使用NApriori检测方案</string>
+    <string name="mobile_virus">手机病毒排行</string>
+    <string name="apk">点我选择要检测的Apk文件</string>
+    <string name="local_detect_result">本地检测结果</string>
+    <string name="no_result">当前无结果</string>
     <string-array name="app_func_items">
         <item>首页</item>
         <item>本地检测</item>
         <item>联网检测</item>
         <item>个人中心</item>
+    </string-array>
+    <string-array name="virus_rank">
+        <item>假“微信电话本”含吸费木马</item>
+        <item>木马制作者利用E4A编程专盗QQ密码</item>
+        <item>苹果蛀虫</item>
+        <item>微信鬼面</item>
+        <item>积分陷阱</item>
+        <item>暗杀黑帮</item>
+        <item>手银鬼手</item>
+        <item>炸弹相册</item>
+        <item>银联间谍</item>
+        <item>“蝗虫”超级手机木马</item>
     </string-array>
 </resources>
