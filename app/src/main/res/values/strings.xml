@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NAprioriDetectClient</string>
+    <string name="napriori">欢迎使用NApriori检测方案</string>
 </resources>
