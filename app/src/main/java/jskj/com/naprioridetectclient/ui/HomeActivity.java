@@ -11,7 +11,7 @@ import android.view.Window;
 import android.widget.TextView;
 
 import jskj.com.naprioridetectclient.R;
-import jskj.com.naprioridetectclient.fragment.TestFragment;
+import jskj.com.naprioridetectclient.fragment.FragmentFactory;
 
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
@@ -31,7 +31,22 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mTxtTitle.setText(appFunctions[tab.getPosition()]);
+            }
 
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     private void initData() {
@@ -71,12 +86,12 @@ public class HomeActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return new TestFragment();
+            return FragmentFactory.getFragmentByPosition(position);
         }
 
         @Override
         public int getCount() {
-            if(appFunctions == null) {
+            if (appFunctions == null) {
                 return 0;
             }
             return appFunctions.length;
