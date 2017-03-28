@@ -17,12 +17,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import jskj.com.naprioridetectclient.R;
+import jskj.com.naprioridetectclient.contant.MsgContent;
 import jskj.com.naprioridetectclient.db.NAprioriDao;
 import jskj.com.naprioridetectclient.entry.AppInfo;
 
 public class LocalFragment extends Fragment {
     private static final String TAG = "LocalFragment";
-    String detectResult = "";
+    private String detectResult = "";
     private Button mBtnDetectApk;
     private TextView mTvDetectResult;
     private NAprioriDao mDao;
@@ -80,20 +81,22 @@ public class LocalFragment extends Fragment {
                 Intent intent = new Intent();
                 intent.setType("application/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, MsgContent.local_msg_request_code);
             }
         });
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode != MsgContent.local_msg_request_code) {
+            return;
+        }
         String apkPath = data.getData().getPath();
         PackageInfo info = getActivity().getPackageManager().getPackageArchiveInfo(apkPath, PackageManager.GET_ACTIVITIES);
         ApplicationInfo appInfo = info.applicationInfo;
         appInfo.sourceDir = apkPath;
         appInfo.publicSourceDir = apkPath;
         CharSequence label = appInfo.loadLabel(getActivity().getPackageManager());
-        CharSequence description = appInfo.loadDescription(getActivity().getPackageManager());
         AppInfo app = new AppInfo();
         app.versionName = info.versionName;
         app.versionCode = info.versionCode;
@@ -103,10 +106,14 @@ public class LocalFragment extends Fragment {
         Message msg = Message.obtain();
         msg.obj = app;
         msg.what = 0;
+        showWaitDialog();
+        mHandler.sendMessageDelayed(msg, 3000);
+    }
+
+    private void showWaitDialog() {
         dialog = new ProgressDialog(getActivity());
         dialog.setMessage("正在检测中，请等待");
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.show();
-        mHandler.sendMessageDelayed(msg, 3000);
     }
 }

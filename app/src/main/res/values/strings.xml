@@ -5,6 +5,7 @@
     <string name="apk">点我选择要检测的Apk文件</string>
     <string name="local_detect_result">本地检测结果</string>
     <string name="no_result">当前无结果</string>
+    <string name="net_is_use">检测网络是否可用</string>
     <string-array name="app_func_items">
         <item>首页</item>
         <item>本地检测</item>
