@@ -32,6 +32,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.0'
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.youth.banner:banner:1.4.9'
+    compile 'com.android.support:support-v4:25.2.0'
 }
 repositories {
     mavenCentral()

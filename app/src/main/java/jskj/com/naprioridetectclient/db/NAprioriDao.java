@@ -14,12 +14,10 @@ import jskj.com.naprioridetectclient.entry.AppInfo;
 
 public class NAprioriDao {
     private static final String TAG = "NAprioriDao";
-
-    private NAprioriDao() {
-    }
-
     private static NAprioriDao mInstance;
     private static SQLiteDatabase mDb = null;
+    private NAprioriDao() {
+    }
 
     public static NAprioriDao getInstance(Context context) {
         if (mInstance == null) {
@@ -29,7 +27,7 @@ public class NAprioriDao {
         return mInstance;
     }
 
-    public static void init(Context context) {
+    private static void init(Context context) {
         NAprioriOpenHelper helper = new NAprioriOpenHelper(context);
         mDb = helper.getWritableDatabase();
     }
@@ -44,9 +42,9 @@ public class NAprioriDao {
         if (mDb != null) {
             ContentValues values = new ContentValues();
             values.put(DBConstant.NAME, info.name);
-            values.put(DBConstant.perm_fam, info.permissionFamilly);
-            values.put(DBConstant.normal_app, info.normalApp);
-            values.put(DBConstant.app_md5, info.appMd5);
+            values.put(DBConstant.PERM_FAM, info.permissionFamilly);
+            values.put(DBConstant.NORMAL_APP, info.normalApp);
+            values.put(DBConstant.APP_MD5, info.appMd5);
             return mDb.insert(DBConstant.TABLE_NAME, null, values);
         }
         Log.e(TAG, "sqlitedatabase is null,so not save data!!!");
@@ -63,21 +61,21 @@ public class NAprioriDao {
 
     public AppInfo queryOne(String name) {
         if (mDb != null) {
-            Cursor cursor = mDb.query(DBConstant.TABLE_NAME, null, "name = ?", new String[]{name}, null, null, null);
-            cursor.moveToNext();
+            Cursor cursor = mDb.query(DBConstant.TABLE_NAME, null, DBConstant.NAME + "=?", new String[]{name}, null, null, null);
+            if(!cursor.moveToNext()) return null;
             AppInfo info = new AppInfo();
             info.id = cursor.getInt(cursor.getColumnIndex(DBConstant.ID));
             info.name = cursor.getString(cursor.getColumnIndex(DBConstant.NAME));
-            info.permissionFamilly = cursor.getString(cursor.getColumnIndex(DBConstant.perm_fam));
-            info.normalApp = cursor.getInt(cursor.getColumnIndex(DBConstant.normal_app));
-            info.appMd5 = cursor.getString(cursor.getColumnIndex(DBConstant.app_md5));
+            info.permissionFamilly = cursor.getString(cursor.getColumnIndex(DBConstant.PERM_FAM));
+            info.normalApp = cursor.getInt(cursor.getColumnIndex(DBConstant.NORMAL_APP));
+            info.appMd5 = cursor.getString(cursor.getColumnIndex(DBConstant.APP_MD5));
             return info;
         }
         return null;
     }
 
     public List<AppInfo> queryAll() {
-        if(mDb == null) {
+        if (mDb == null) {
             return null;
         }
         Cursor cursor = mDb.query(DBConstant.TABLE_NAME, null, null, null, null, null, null);
@@ -86,9 +84,9 @@ public class NAprioriDao {
             AppInfo info = new AppInfo();
             info.id = cursor.getInt(cursor.getColumnIndex(DBConstant.ID));
             info.name = cursor.getString(cursor.getColumnIndex(DBConstant.NAME));
-            info.permissionFamilly = cursor.getString(cursor.getColumnIndex(DBConstant.perm_fam));
-            info.normalApp = cursor.getInt(cursor.getColumnIndex(DBConstant.normal_app));
-            info.appMd5 = cursor.getString(cursor.getColumnIndex(DBConstant.app_md5));
+            info.permissionFamilly = cursor.getString(cursor.getColumnIndex(DBConstant.PERM_FAM));
+            info.normalApp = cursor.getInt(cursor.getColumnIndex(DBConstant.NORMAL_APP));
+            info.appMd5 = cursor.getString(cursor.getColumnIndex(DBConstant.APP_MD5));
             infos.add(info);
         }
         return infos;

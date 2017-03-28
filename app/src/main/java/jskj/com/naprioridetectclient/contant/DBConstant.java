@@ -1,8 +1,5 @@
 package jskj.com.naprioridetectclient.contant;
 
-/**
- * Created by cui on 17-3-26.
- */
 
 public class DBConstant {
     public static final String DB_NAME = "napriori_db";
@@ -10,7 +7,9 @@ public class DBConstant {
 
     public static final String ID = "_id";
     public static final String NAME = "_name";
-    public static final String perm_fam = "_permission";
-    public static final String normal_app = "_normal_app";
-    public static final String app_md5 = "_app_md5";
+    public static final String VERSION_NAME = "vesion_name";
+    public static final String VERSION_CODE = "version_code";
+    public static final String PERM_FAM = "_permissions";
+    public static final String NORMAL_APP = "_normal_app";
+    public static final String APP_MD5 = "_app_md5";
 }

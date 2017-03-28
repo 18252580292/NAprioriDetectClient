@@ -10,7 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.widget.TextView;
 
+import jskj.com.naprioridetectclient.NAprioriApplication;
 import jskj.com.naprioridetectclient.R;
+import jskj.com.naprioridetectclient.db.NAprioriDao;
+import jskj.com.naprioridetectclient.entry.AppInfo;
 import jskj.com.naprioridetectclient.fragment.FragmentFactory;
 
 public class HomeActivity extends AppCompatActivity {

@@ -12,9 +12,16 @@ public class NAprioriOpenHelper extends SQLiteOpenHelper {
     private static String sql;
 
     static {
-        sql = "create table " + DBConstant.DB_NAME + " (" + DBConstant.ID + " primary key autoincrement,"
-                + DBConstant.NAME + " text," + DBConstant.perm_fam + " text," + DBConstant.normal_app
-                + " int," + DBConstant.app_md5 + ")";
+        sql = "create table " + DBConstant.TABLE_NAME +
+                " (" +
+                DBConstant.ID + " integer primary key autoincrement," +
+                DBConstant.NAME + " text," +
+                DBConstant.PERM_FAM + " text," +
+                DBConstant.VERSION_NAME + " text," +
+                DBConstant.VERSION_CODE + " integer," +
+                DBConstant.NORMAL_APP + " int," +
+                DBConstant.APP_MD5 +
+                ")";
     }
 
     public NAprioriOpenHelper(Context context) {
@@ -23,7 +30,7 @@ public class NAprioriOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //create table xxx (id primary key autoincrement,name text, perm_fam text,normal_app bool,
+        //create table xxx (id primary key autoincrement,name text, PERM_FAM text,NORMAL_APP bool,
         // md5 text)
         Log.d(TAG, "create sql :" + sql);
         db.execSQL(sql);
