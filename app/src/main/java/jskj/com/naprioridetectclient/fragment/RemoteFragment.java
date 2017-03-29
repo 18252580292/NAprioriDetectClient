@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+
 import jskj.com.naprioridetectclient.R;
 import jskj.com.naprioridetectclient.contant.MsgContent;
 import jskj.com.naprioridetectclient.ui.NetWorkUtils;
@@ -66,6 +68,16 @@ public class RemoteFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String apkFilePath = data.getData().getPath();
+        File apkFile = new File(apkFilePath);
+        if (!apkFile.exists()) {
+            Toast.makeText(getActivity(), "该apk文件已经不存在了，请重新选择!!!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        uploadApkFile(apkFile);
+    }
+
+    public void uploadApkFile(File file) {
 
     }
 }

@@ -20,6 +20,7 @@ import jskj.com.naprioridetectclient.R;
 import jskj.com.naprioridetectclient.contant.MsgContent;
 import jskj.com.naprioridetectclient.db.NAprioriDao;
 import jskj.com.naprioridetectclient.entry.AppInfo;
+import jskj.com.naprioridetectclient.util.ApkFileUtils;
 
 public class LocalFragment extends Fragment {
     private static final String TAG = "LocalFragment";
@@ -92,19 +93,9 @@ public class LocalFragment extends Fragment {
             return;
         }
         String apkPath = data.getData().getPath();
-        PackageInfo info = getActivity().getPackageManager().getPackageArchiveInfo(apkPath, PackageManager.GET_ACTIVITIES);
-        ApplicationInfo appInfo = info.applicationInfo;
-        appInfo.sourceDir = apkPath;
-        appInfo.publicSourceDir = apkPath;
-        CharSequence label = appInfo.loadLabel(getActivity().getPackageManager());
-        AppInfo app = new AppInfo();
-        app.versionName = info.versionName;
-        app.versionCode = info.versionCode;
-        app.name = label.toString();
-        app.packageName = appInfo.packageName;
-
+        AppInfo info = ApkFileUtils.getApkInfo(getActivity(), apkPath);
         Message msg = Message.obtain();
-        msg.obj = app;
+        msg.obj = info;
         msg.what = 0;
         showWaitDialog();
         mHandler.sendMessageDelayed(msg, 3000);
