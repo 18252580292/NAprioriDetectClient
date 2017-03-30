@@ -12,7 +12,7 @@
     <TextView
         android:background="@android:color/darker_gray"
         android:padding="8dp"
-        android:text="@string/local_detect_result"
+        android:text="@string/txt_detect_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

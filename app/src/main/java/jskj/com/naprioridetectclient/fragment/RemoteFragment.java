@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import jskj.com.naprioridetectclient.R;
+import jskj.com.naprioridetectclient.contant.DBConstant;
 import jskj.com.naprioridetectclient.contant.MsgContent;
+import jskj.com.naprioridetectclient.entry.AppInfo;
 import jskj.com.naprioridetectclient.ui.NetWorkUtils;
+import jskj.com.naprioridetectclient.util.ApkFileUtils;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Response;
 
 public class RemoteFragment extends Fragment implements View.OnClickListener {
+    private static final String TAG = "RemoteFragment";
     private Button mBtnNetIsUse;
     private Button mBtnSelectApk;
     private TextView mTvDetectResult;
@@ -74,10 +87,34 @@ public class RemoteFragment extends Fragment implements View.OnClickListener {
             Toast.makeText(getActivity(), "该apk文件已经不存在了，请重新选择!!!", Toast.LENGTH_SHORT).show();
             return;
         }
-        uploadApkFile(apkFile);
+        AppInfo apkInfo = ApkFileUtils.getApkInfo(getActivity(), apkFilePath);
+        uploadApkFile(apkFile, apkInfo);
     }
 
-    public void uploadApkFile(File file) {
+    public void uploadApkFile(File file, AppInfo apkInfo) {
+        Map<String, String> params = new HashMap<>();
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        builder.setType(MultipartBody.FORM);
+        builder.addFormDataPart(DBConstant.NAME, apkInfo.name);
+        builder.addFormDataPart(DBConstant.VERSION_NAME, apkInfo.versionName);
+        builder.addFormDataPart(DBConstant.VERSION_CODE, apkInfo.versionCode + "");
 
+//        builder.addFormDataPart("apk", file.getName(), RequestBody.create(MediaType.parse("application/octet-stream"), file));
+        MultipartBody multipartBody = builder.build();
+        okhttp3.Request request = new okhttp3.Request.Builder().url("http://10.64.37.20:8080/NAprioriServer/uploadApk")
+                .post(multipartBody).build();
+        OkHttpClient client = new OkHttpClient.Builder().build();
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG, "onFailure: ", e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.e(TAG, "onResponse: success");
+            }
+        });
     }
 }
