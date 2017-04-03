@@ -2,9 +2,6 @@ package jskj.com.naprioridetectclient.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -90,6 +87,9 @@ public class LocalFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode != MsgContent.local_msg_request_code) {
+            return;
+        }
+        if(data == null) {
             return;
         }
         String apkPath = data.getData().getPath();

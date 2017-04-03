@@ -10,10 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.widget.TextView;
 
-import jskj.com.naprioridetectclient.NAprioriApplication;
 import jskj.com.naprioridetectclient.R;
-import jskj.com.naprioridetectclient.db.NAprioriDao;
-import jskj.com.naprioridetectclient.entry.AppInfo;
 import jskj.com.naprioridetectclient.fragment.FragmentFactory;
 
 public class HomeActivity extends AppCompatActivity {
@@ -70,8 +67,8 @@ public class HomeActivity extends AppCompatActivity {
         TabLayout.Tab remoteTab = mTabLayout.getTabAt(2);
         remoteTab.setIcon(R.drawable.remote_tab_selected);
 
-        TabLayout.Tab personTab = mTabLayout.getTabAt(3);
-        personTab.setIcon(R.drawable.my_tab_selected);
+//        TabLayout.Tab personTab = mTabLayout.getTabAt(3);
+//        personTab.setIcon(R.drawable.my_tab_selected);
 
     }
 

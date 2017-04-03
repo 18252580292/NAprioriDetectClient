@@ -61,7 +61,6 @@ public class RemoteFragment extends Fragment implements View.OnClickListener {
                 boolean result = NetWorkUtils.isNetWorkAvailable(getActivity());
                 if (result) {
                     Toast.makeText(getActivity(), "网络可用，可以进行在线检测!!!", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getActivity(), "网络可用，可以进行在线检测!!!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), "网络不可用，请检查网络连接!!!", Toast.LENGTH_SHORT).show();
                 }

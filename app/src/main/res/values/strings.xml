@@ -10,7 +10,7 @@
         <item>首页</item>
         <item>本地检测</item>
         <item>联网检测</item>
-        <item>个人中心</item>
+        <!--<item>个人中心</item>-->
     </string-array>
     <string-array name="virus_rank">
         <item>假“微信电话本”含吸费木马</item>
@@ -24,4 +24,18 @@
         <item>银联间谍</item>
         <item>“蝗虫”超级手机木马</item>
     </string-array>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 </resources>
