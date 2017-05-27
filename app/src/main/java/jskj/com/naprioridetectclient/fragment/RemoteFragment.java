@@ -75,13 +75,18 @@ public class RemoteFragment extends Fragment implements View.OnClickListener {
         Intent intent = new Intent();
         intent.setType("application/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, MsgContent.remote_msg_request_code);
+        startActivityForResult(intent, MsgContent.REMOTE_MSG_REQUEST_CODE);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(data == null) {
+            Log.e(TAG, "don't select any apk file");
+            return;
+        }
         String apkFilePath = data.getData().getPath();
         File apkFile = new File(apkFilePath);
+
         if (!apkFile.exists()) {
             Toast.makeText(getActivity(), "该apk文件已经不存在了，请重新选择!!!", Toast.LENGTH_SHORT).show();
             return;
@@ -100,7 +105,7 @@ public class RemoteFragment extends Fragment implements View.OnClickListener {
 
 //        builder.addFormDataPart("apk", file.getName(), RequestBody.create(MediaType.parse("application/octet-stream"), file));
         MultipartBody multipartBody = builder.build();
-        okhttp3.Request request = new okhttp3.Request.Builder().url("http://10.64.37.20:8080/NAprioriServer/uploadApk")
+        okhttp3.Request request = new okhttp3.Request.Builder().url("")
                 .post(multipartBody).build();
         OkHttpClient client = new OkHttpClient.Builder().build();
         Call call = client.newCall(request);

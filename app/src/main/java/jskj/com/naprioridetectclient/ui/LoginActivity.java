@@ -50,6 +50,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    /**
+     * 处理登录请求
+     */
     private void processLogin() {
         String username = mUsernameEt.getText().toString();
         String pwd = mPwdEt.getText().toString();

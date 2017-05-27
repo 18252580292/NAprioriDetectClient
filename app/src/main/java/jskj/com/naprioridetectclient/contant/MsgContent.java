@@ -5,8 +5,8 @@ package jskj.com.naprioridetectclient.contant;
  */
 
 public class MsgContent {
-    public static final int local_msg_request_code = 0x00;
-    public static final int local_msg_response_code = 0x01;
-    public static final int remote_msg_request_code = 0x02;
-    public static final int remote_msg_response_code = 0x03;
+    public static final int LOCAL_MSG_REQUEST_CODE = 0x00;
+    public static final int LOCAL_MSG_RESPONSE_CODE = 0x01;
+    public static final int REMOTE_MSG_REQUEST_CODE = 0x02;
+    public static final int REMOTE_MSG_RESPONSE_CODE = 0x03;
 }

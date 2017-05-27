@@ -79,14 +79,14 @@ public class LocalFragment extends Fragment {
                 Intent intent = new Intent();
                 intent.setType("application/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, MsgContent.local_msg_request_code);
+                startActivityForResult(intent, MsgContent.LOCAL_MSG_REQUEST_CODE);
             }
         });
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode != MsgContent.local_msg_request_code) {
+        if(requestCode != MsgContent.LOCAL_MSG_REQUEST_CODE) {
             return;
         }
         if(data == null) {
@@ -101,6 +101,9 @@ public class LocalFragment extends Fragment {
         mHandler.sendMessageDelayed(msg, 3000);
     }
 
+    /**
+     * 显示等待对话框
+     */
     private void showWaitDialog() {
         dialog = new ProgressDialog(getActivity());
         dialog.setMessage("正在检测中，请等待");

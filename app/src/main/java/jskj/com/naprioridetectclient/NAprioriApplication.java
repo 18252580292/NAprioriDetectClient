@@ -5,7 +5,7 @@ import android.app.Application;
 import android.content.Context;
 
 public class NAprioriApplication extends Application {
-    private static Context sContext;
+    public static Context sContext;
 
     public static Context getContext() {
         if (sContext != null) {
